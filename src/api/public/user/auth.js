@@ -22,7 +22,7 @@ router
 		} else {
 			const newUser = await User.create({ username, password });
 			res.body = response.OK();
-			res.body.token = passportUtils.buildToken(user._id);
+			res.body.token = passportUtils.buildToken(newUser._id);
 		}
 		res.send(res.body);
 	})
@@ -37,7 +37,7 @@ router
 				res.body = response.OK();
 				res.body.token = passportUtils.buildToken(user._id);
 			} else {
-				res.body = response.CONFLICT();
+				res.body = response.DATA_ERROR();
 			}
 		}
 		res.send(res.body);
